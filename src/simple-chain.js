@@ -1,6 +1,6 @@
 let chain = [];
 
-let isValidPosition = position => Number.isInteger(position) || position < 0 || position > this.getLength() - 1;
+let isValidPosition = (position, length) => Number.isInteger(position) && position >= 0 && position < length - 1;
 
 let extractValue = value => {
   value = typeof value !== "undefined" ? value : '';
@@ -16,8 +16,10 @@ const chainMaker = {
     return this;
   },
   removeLink(position) {
-    if (!isValidPosition(position)) {
-      throw Error();
+    position -= 1;
+    if (!isValidPosition(position, this.getLength())) {
+      chain = [];
+      throw new Error();
     }
     chain.splice(position, 1);
     return this;
