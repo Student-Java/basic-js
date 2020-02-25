@@ -1,23 +1,35 @@
+let chain = [];
+
+let isValidPosition = position => Number.isInteger(position) || position < 0 || position > this.getLength() - 1;
+
+let extractValue = value => {
+  value = typeof value !== "undefined" ? value : '';
+  return value === null ? 'null' : value
+};
+
 const chainMaker = {
   getLength() {
-    throw 'Not implemented';
-    // remove line with error and write your code here
+    return chain.length;
   },
   addLink(value) {
-    throw 'Not implemented';
-    // remove line with error and write your code here
+    chain.push(extractValue(value));
+    return this;
   },
   removeLink(position) {
-    throw 'Not implemented';
-    // remove line with error and write your code here
+    if (!isValidPosition(position)) {
+      throw Error();
+    }
+    chain.splice(position, 1);
+    return this;
   },
   reverseChain() {
-    throw 'Not implemented';
-    // remove line with error and write your code here
+    chain.reverse();
+    return this;
   },
   finishChain() {
-    throw 'Not implemented';
-    // remove line with error and write your code here
+    let chainView = `( ${chain.join(' )~~( ')} )`;
+    chain = [];
+    return chainView;
   }
 };
 
