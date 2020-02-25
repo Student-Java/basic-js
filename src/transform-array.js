@@ -17,8 +17,8 @@ module.exports = function transform( arr ) {
                 (i+1) < arr.length && result.push(arr[i + 1]);
                 break;
             case '--double-prev':
-                (i - 1) > 0 && result.push(arr[i - 1]);
-                break
+                i !== 0 && result.push(arr[i - 1]);
+                break;
             default:
                 result.push(arr[i]);
         }
