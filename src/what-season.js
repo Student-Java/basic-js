@@ -1,4 +1,7 @@
-module.exports = function getSeason(/* date */) {
-  throw 'Not implemented';
-  // remove line with error and write your code here
+const seasons = ['winter', 'spring', 'summer', 'autumn']
+
+module.exports = function getSeason( date ) {
+    return seasons[computeSeasonIdx(date)];
 };
+
+let computeSeasonIdx = date => Math.floor(((date.getMonth() + 1) / 12 * 4)) % 4;
