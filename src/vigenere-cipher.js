@@ -25,10 +25,6 @@ class VigenereCipheringMachine {
     }
   }
 
-  getCypherString(length, key) {
-    return new Array(Math.ceil(length / key.length)).fill(key).join('');
-  }
-
   cryptoFunction(message, key, cryptoAlgorithm) {
     let result = [];
 
