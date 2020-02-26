@@ -1,7 +1,7 @@
 class VigenereCipheringMachine {
 
-  constructor(directMachine) {
-    this.reverseMachine = (directMachine === false);
+  constructor(directMachine = true) {
+    this.directMachine = directMachine;
     this.isLetter = /[a-z]/i;
     this.mod = 26;
     this.shift = 65;
@@ -45,7 +45,7 @@ class VigenereCipheringMachine {
       }
     }
 
-    return (this.reverseMachine ? result.reverse() : result).join('');
+    return (this.directMachine ? result : result.reverse()).join('');
   }
 }
 
