@@ -10,13 +10,13 @@ class VigenereCipheringMachine {
   encrypt(message, key) {
     this.validateParameters(message, key);
 
-    return this.cryptoFunction(message, key, key => key.codePointAt(0));
+    return this.cryptoFunction(message, key, key => key);
   }
 
   decrypt(message, key) {
     this.validateParameters(message, key);
 
-    return this.cryptoFunction(message, key, key => this.mod - key.codePointAt(0));
+    return this.cryptoFunction(message, key, key => this.mod - key);
   }
 
   validateParameters(message, key) {
@@ -34,7 +34,7 @@ class VigenereCipheringMachine {
     for (let i = 0, j = 0; i < message.length; i++) {
       let sym = message[i];
       if (this.isLetter.test(sym)) {
-        let symCode = (sym.codePointAt(0) + cryptoAlgorithm(key[j++ % key.length])) % this.mod;
+        let symCode = (sym.codePointAt(0) + cryptoAlgorithm(key[j++ % key.length]).codePointAt(0)) % this.mod;
         result.push(String.fromCharCode(symCode + this.shift));
       } else {
         result.push(sym);
