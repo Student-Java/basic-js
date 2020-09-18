@@ -1,3 +1,5 @@
+const CustomError = require("../extensions/custom-error");
+
 const seasons = ['winter', 'spring', 'summer', 'autumn']
 
 module.exports = function getSeason( date ) {

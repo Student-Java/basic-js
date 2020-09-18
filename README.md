@@ -13,6 +13,14 @@ Your task is to count the cats hidden in the backyard (presented by two-dimensio
 
 Number of cats found should be `number`. If no cats found, function should return `0`.
 
+For example:
+
+`countCats([
+    [0, 1, '^^'],
+    [0, '^^', 2],
+    ['^^', 1, 2]
+  ]) => 3`
+
 Write your code in `src/count-cats.js`.
 
 ---
@@ -25,9 +33,27 @@ The approximate age of the sample is calculated by measuring the **ratio** of th
 
 [Read about method](https://chem.libretexts.org/Bookshelves/Physical_and_Theoretical_Chemistry_Textbook_Maps/Supplemental_Modules_(Physical_and_Theoretical_Chemistry)/Nuclear_Chemistry/Nuclear_Kinetics/Half-Lives_and_Radioactive_Decay_Kinetics#section_2)
 
+---
+<details>
+
+  <summary>About calculations</summary>
+  You can use the formula from the article at the link above. 0.693 is an approximation of the natural logarithm of two.
+
+</details>
+
+---
+
 Your task is to implement the function `dateSample(sampleActivity)` that calculates sample approximate age (in years). Please use given `MODERN_ACTIVITY` and `HALF_LIFE_PERIOD`.
 
-Function parameter `sampleActivity` is a `string`. Calculated sample age must be `number`. Age must be **integer**. Age must be **rounded up**. In case of wrong input parameter **type** or **inadequate** activity value or **absence** of argument function must return `false`.
+Function parameter `sampleActivity` is a `string`. Calculated sample age must be `number`.
+
+Age must be **integer**. Age must be **rounded up** (ceiling). In case of wrong input parameter **type** or **inadequate** activity value or **absence** of argument function must return `false`.
+
+For example:
+
+`dateSample('1') => 22387` (or `22392` depending on formula used)
+
+`dateSample('WOOT!') => false`
 
 Write your code in `src/carbon-dating.js`.
 
@@ -57,6 +83,16 @@ Write your code in `src/dream-team.js`.
 Your task is to implement the function `getSeason(date)` that accepts `Date` object and returns the time of the year that matches it.
 Time of the year must be `string`.
 
+---
+<details>
+
+<summary>Seasons in English</summary>
+The names of the seasons in English are: spring, summer, autumn (fall), winter.
+
+</details>
+
+---
+
 If the `date` argument was not passed, the function must return the `string` `'Unable to determine the time of year!'`. If the `date` argument is **invalid**, the function must throw an `Error`.
 
 Shh! An enemy scout has lurked among the arguments that come into this function.
@@ -64,6 +100,12 @@ Shh! An enemy scout has lurked among the arguments that come into this function.
 ![Disguised](https://www.famousbirthdays.com/faces/disguised-toast-image.jpg)
 
 He is guided by the famous proverb: “If it looks like a **duck**, swims like a **duck** and quacks like a **duck**, then it probably is a **duck** (who cares what it **really** is)”. He is **expertly disguised** as a real date, but a clever javascript developer can catch him and `throw` an `Error` just in time!
+
+For example:
+
+`const springDate = new Date(2020, 02, 31)`
+
+`getSeason(springDate) => 'spring'`
 
 Write your code in `src/what-season.js`.
 
@@ -88,9 +130,13 @@ Both parameters are `numbers`.
 
 `calculateHanoi` function returns an object with 2 properties:
 * `turns` (minimum `number` of turns to solve the puzzle)
-* `seconds` (minimum `number` of **seconds** to solve the puzzle at a given `turnsSpeed`).
+* `seconds` (minimum `number` of **seconds** to solve the puzzle at a given `turnsSpeed`, seconds must be an integer, obtained  from **rounded down** (floor) calculation result)
 
 You don't need to validate parameters.
+
+For example:
+
+`calculateHanoi(9, 4308) => { turns: 511, seconds: 427 }`
 
 Write your code in `src/hanoi-tower.js`.
 
@@ -98,7 +144,7 @@ Write your code in `src/hanoi-tower.js`.
 
 ### **Transform array**
 
-Your task is to implement the function `transform(arr)` that takes an `array` and returns it **transformed**, based on the **control sequences** that it contains.
+Your task is to implement the function `transform(arr)` that takes an `array` and returns **transformed** array, based on the **control sequences** that `arr` contains.
 **Control sequences** are defined `string` elements of the mentioned `array`:
 * `--discard-next` excludes the next element of the array from the transformed array.
 * `--discard-prev` excludes the previous element of the array from the transformed array.
@@ -111,7 +157,7 @@ For example:
 
 `transform([1, 2, 3, '--discard-prev', 4, 5])` => `[1, 2, 4, 5]`
 
-Control sequences **do not fall** into the transformed array. Control sequences in initial array do not occur in a row. If there is **no element** next to the control sequence **to which it can be applied**, **it does nothing**. The function should throw an `Error` if the `arr` is not an `Array`.
+The function must not affect inital array. Control sequences are applied **from left to right**. Control sequences **do not fall** into the transformed array. Control sequences in initial array don't occur in a row. If there is **no element** next to the control sequence **to which it can be applied**, **it does nothing**. The function should throw an `Error` if the `arr` is not an `Array`.
 
 Write your code in `src/transform-array.js`.
 
@@ -202,9 +248,23 @@ Each instance of `VigenereCipheringMachine` must have 2 methods: `encrypt` and `
 
 `decrypt` method accepts 2 parameters: `encryptedMessage` (`string` to decode) and `key` (`string`-keyword).
 
-These parameters for both methods are **mandatory**. If at least one of them has not been given, an `Error` must be thrown.
+These parameters for both methods are **mandatory**. If at least one of them has not been given, an `Error` must be thrown. The text returned by these methods must be **uppercase**. Machines encrypt and decrypt **only latin alphabet** (all other symbols remain unchanged).
 
 You don't need to validate value sent to `constructor` and to `encrypt` and `decrypt` methods (except throwing an `Error` on absence of argument for these methods).
+
+For example:
+
+`const directMachine = new VigenereCipheringMachine();`
+
+`const reverseMachine = new VigenereCipheringMachine(false);`
+
+`directMachine.encrypt('attack at dawn!', 'alphonse') => 'AEIHQX SX DLLU!'`
+
+`directMachine.decrypt('AEIHQX SX DLLU!', 'alphonse') => 'ATTACK AT DAWN!'`
+
+`reverseMachine.encrypt('attack at dawn!', 'alphonse') => '!ULLD XS XQHIEA'`
+
+`reverseMachine.decrypt('AEIHQX SX DLLU!', 'alphonse') => '!NWAD TA KCATTA'`
 
 Write your code in `src/vigenere-cipher.js`.
 
@@ -217,20 +277,20 @@ Write your code in `src/vigenere-cipher.js`.
 4. Go to folder `basic-js`  
 5. To install all dependencies use [`npm install`](https://docs.npmjs.com/cli/install)  
 6. Run `npm run test` in command line.
-7. You will see the number of passing and failing tests. 100% of passing tests is equal to 100p in score  
+7. You will see the number of pending, passing and failing tests. 100% of passing tests is equal to 100p in score  
 
 ---
 
 #### Submit to [rs app](https://app.rs.school)
 1. Open [rs app](https://app.rs.school) and login
-2. Go to [submit task page](https://app.rs.school/course/student/auto-test?course=rs-2020-q1)
+2. Go to [submit task page](https://app.rs.school/course/student/auto-test?course=rs-2020-q3)
 3. Select your task (BasicJS)
 4. Press the submit button and enjoy
 
 ---
 
 #### Notes
-1. We recommend you to use nodejs of version 10 or lower. If you use any of features, that does not supported by node v10, score won't be submitted.
+1. We recommend you to use nodejs of version 12 or lower. If you use any of features, that does not supported by node v12, there may be problems with task submit.
 2. Please, be sure that each of your tests is limited to 30 sec.
 
 ---

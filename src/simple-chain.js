@@ -1,3 +1,5 @@
+const CustomError = require("../extensions/custom-error");
+
 let chain = [];
 
 let isValidPosition = (position, length) => Number.isInteger(position) && position >= 0 && position < length - 1;

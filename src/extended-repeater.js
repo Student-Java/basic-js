@@ -1,3 +1,5 @@
+const CustomError = require("../extensions/custom-error");
+
 module.exports = function repeater(str, options, additionalSeparator) {
     let additional;
     let separator = typeof options.separator !== 'undefined' ? options.separator : '+';
