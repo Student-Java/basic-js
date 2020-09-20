@@ -36,7 +36,7 @@ class VigenereCipheringMachine {
     for (let i = 0, j = 0; i < message.length; i++) {
       let sym = message[i];
       if (this.isLetter.test(sym)) {
-        let symCode = (sym.codePointAt(0) + cryptoAlgorithm(key[j++ % key.length]).codePointAt(0)) % this.mod;
+        let symCode = (sym.codePointAt(0) + cryptoAlgorithm(key[j++ % key.length].codePointAt(0))) % this.mod;
         result.push(String.fromCharCode(symCode + this.shift));
       } else {
         result.push(sym);
